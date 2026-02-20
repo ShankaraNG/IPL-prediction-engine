@@ -1,0 +1,18 @@
+features:
+  categorical:
+    - team1
+    - team2
+    - toss_winner
+    - toss_decision
+    - venue
+    - match_type
+    - super_over
+
+  numerical:
+    - season
+    - target_runs
+    - target_overs
+
+dataPath:
+  file: ipl.csv
+  path: data/

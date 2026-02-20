@@ -1,0 +1,147 @@
+
+/* REMOVE DEFAULT BROWSER GAP */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+/* BACKGROUND IMAGE */
+
+body {
+
+background-image: url("/static/images/ipl_bg.jpg");
+background-size: cover;
+background-position: center;
+background-attachment: fixed;
+font-family: Arial;
+
+}
+
+
+/* NAVBAR */
+
+.navbar {
+
+position: fixed;
+top:0;
+left:0;
+width:100%;
+
+display:flex;
+justify-content:space-between;
+align-items:center;
+
+background-color:#0b5ed7;
+padding:15px 30px;
+
+z-index:1000;
+
+}
+
+
+/* LEFT SIDE LINKS */
+
+.nav-left a {
+
+color:white;
+margin-right:20px;
+text-decoration:none;
+font-size:18px;
+
+}
+
+
+/* RIGHT SIDE BRAND */
+
+.brand {
+
+color:white;
+font-weight:bold;
+font-size:20px;
+
+}
+
+
+/* CENTER CONTENT BOX */
+
+.center-box {
+
+background:rgba(255,255,255,0.85);
+padding:40px;
+width:400px;
+margin:auto;
+margin-top:180px;
+border-radius:10px;
+text-align:center;
+
+}
+
+
+/* BUTTONS */
+
+button {
+
+padding:10px 20px;
+margin:10px;
+background:#0b5ed7;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+
+}
+
+button:hover {
+
+background:#084298;
+
+}
+
+
+/* INPUT FIELDS */
+
+input {
+
+padding:6px;
+margin:5px;
+
+}
+
+label{
+
+display:block;
+text-align:left;
+margin-top:10px;
+font-weight:bold;
+
+}
+
+input{
+
+width:100%;
+padding:8px;
+margin-top:3px;
+border-radius:5px;
+border:1px solid #ccc;
+
+}
+
+
+.btn-group{
+
+display:flex;
+justify-content:center;
+align-items:center;
+gap:20px;
+margin-top:20px;
+
+}
+
+.btn-group a{
+
+display:block;
+
+}

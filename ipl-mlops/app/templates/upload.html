@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="center-box">
+
+<h2>Upload CSV</h2>
+
+<a href="/template" download>
+<button type="button">Download Template</button>
+</a>
+
+<br><br>
+
+<form id="uploadForm" enctype="multipart/form-data">
+
+<input type="file" name="file" required><br><br>
+
+<button type="submit">Upload & Predict</button>
+
+</form>
+
+</div>
+
+<script>
+
+document.getElementById("uploadForm")
+.addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+let formData = new FormData(this);
+
+let response = await fetch("/upload_predict",{
+method:"POST",
+body:formData
+});
+
+let blob = await response.blob();
+
+let url = window.URL.createObjectURL(blob);
+
+let a = document.createElement("a");
+a.href = url;
+a.download = "predictions.csv";
+document.body.appendChild(a);
+a.click();
+
+a.remove();
+window.URL.revokeObjectURL(url);
+
+});
+
+</script>
+
+{% endblock %}

@@ -1,0 +1,4 @@
+logging:
+  level: INFO
+  training_log: logs/training.log
+  inference_log: logs/inference.log

@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="center-box">
+
+<h2>Match Prediction</h2>
+
+<form id="predictForm">
+
+<label>Team 1</label>
+<input name="team1" required><br>
+
+<label>Team 2</label>
+<input name="team2" required><br>
+
+<label>Toss Winner</label>
+<input name="toss_winner" required><br>
+
+<label>Toss Decision</label>
+<input name="toss_decision" required><br>
+
+<label>Venue</label>
+<input name="venue" required><br>
+
+<label>Match Type</label>
+<input name="match_type" required><br>
+
+<label>Season</label>
+<input name="season" type="number" required><br>
+
+<label>Target Runs</label>
+<input name="target_runs" type="number" required><br>
+
+<label>Target Overs</label>
+<input name="target_overs" type="number" required><br>
+
+<label>Super Over (Y/N)</label>
+<input name="super_over" required><br>
+
+<br>
+
+<button type="submit">Predict</button>
+
+</form>
+
+<br>
+
+<h3 id="result"></h3>
+
+</div>
+
+<script>
+
+document.getElementById("predictForm")
+.addEventListener("submit", async function(e){
+
+e.preventDefault();
+
+let formData = new FormData(this);
+
+let response = await fetch("/form_predict",{
+method:"POST",
+body:formData
+});
+
+let data = await response.json();
+
+document.getElementById("result").innerHTML =
+"Predicted Winner: " + data.winner;
+
+});
+
+</script>
+
+{% endblock %}
