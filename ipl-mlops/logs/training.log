@@ -1,0 +1,38 @@
+2026-02-21 04:35:11,560 | Main Runner | INFO | Starting the Model training Pipeline
+2026-02-21 04:35:11,577 | PIPELINERUNNER | INFO | File found: ipl.csv. Loading data...
+2026-02-21 04:35:11,599 | PREPROCESSING | INFO | Replaced the names present in the data file with the team names
+2026-02-21 04:35:11,609 | PREPROCESSING | INFO | Checking for Obsolete teams
+2026-02-21 04:35:11,611 | PREPROCESSING | INFO | Obsolete team names checked
+2026-02-21 04:35:11,611 | PREPROCESSING | INFO | Dropping unnecessary columns
+2026-02-21 04:35:11,612 | PREPROCESSING | INFO | Dropped unnecessary columns. Remaining columns: ['team1', 'team2', 'match_date', 'toss_winner', 'toss_decision', 'winner', 'player_of_match', 'venue', 'city', 'team1_players', 'team2_players', 'season', 'match_number', 'match_type', 'result', 'result_margin', 'target_runs', 'target_overs', 'super_over']
+2026-02-21 04:35:11,612 | PREPROCESSING | INFO | Dropping unnecessary columns
+2026-02-21 04:35:11,612 | PREPROCESSING | INFO | Filling target runs and overs with 0 from null
+2026-02-21 04:35:11,612 | PREPROCESSING | INFO | Filling target runs and overs completed
+2026-02-21 04:35:11,612 | PREPROCESSING | INFO | Converting the target_runs and target_overs to int type
+2026-02-21 04:35:11,612 | PREPROCESSING | INFO | Converting the target_runs and target_overs completed
+2026-02-21 04:35:11,617 | PIPELINERUNNER | INFO | Preprocessing complete.
+2026-02-21 04:35:11,618 | PIPELINERUNNER | INFO | Data split successful. Train size: 780, Test size: 195
+2026-02-21 04:35:11,618 | PIPELINEBUILDER | INFO | Initializing pipeline construction
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Categorical features: ['team1', 'team2', 'toss_winner', 'toss_decision', 'venue', 'match_type', 'super_over', 'batting_first', 'chasing_team']
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Numerical features: ['season', 'req_rr']
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Creating Numerical and categorical pipeline
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Completed Creating Numerical and Categorical Pipeline
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Creating ColumnTransformer
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Completed Creating Column Transformer
+2026-02-21 04:35:11,619 | PIPELINEBUILDER | INFO | Building the final Pipeline
+2026-02-21 04:35:11,620 | PIPELINEBUILDER | INFO | Completed the final Pipeline
+2026-02-21 04:35:11,620 | PIPELINEBUILDER | INFO | Hyperparameter grid defined for: ['model__n_estimators', 'model__max_depth', 'model__min_samples_split', 'model__min_samples_leaf', 'model__max_features', 'model__bootstrap']
+2026-02-21 04:35:11,620 | PIPELINEBUILDER | INFO | Creating the Gridsearch CV
+2026-02-21 04:35:11,620 | PIPELINEBUILDER | INFO | Completed Creating the Grid Search CV
+2026-02-21 04:35:11,620 | PIPELINEBUILDER | INFO | GridSearchCV initialized with CV=5 and scoring='f1_weighted'
+2026-02-21 04:35:11,620 | TRAINING | INFO | Training started
+2026-02-21 04:37:44,504 | TRAINING | INFO | Training has been completed
+2026-02-21 04:37:44,504 | TRAINING | INFO | Fetching the path and name for the model
+2026-02-21 04:37:44,546 | TRAINING | INFO | Model is saved at Saved at E:\PythonCertificates\IPl Prediction engine\IPL-prediction-engine\ipl-mlops\models/grid_cv_ipl_rf_model.pkl
+2026-02-21 04:37:44,546 | PIPELINERUNNER | INFO | Model training/GridSearch complete.
+2026-02-21 04:37:44,546 | TESTING | INFO | Testing phase initiated.
+2026-02-21 04:37:44,546 | TESTING | INFO | Saving serialized model to: E:\PythonCertificates\IPl Prediction engine\IPL-prediction-engine\ipl-mlops\models/ipl_rf_model.pkl
+2026-02-21 04:37:44,588 | TESTING | INFO | Generating predictions on the test set.
+2026-02-21 04:37:46,651 | TESTING | INFO | Testing module completed. All separate dumps saved successfully.
+2026-02-21 04:37:46,651 | PIPELINERUNNER | INFO | Pipeline execution finished successfully.
+2026-02-21 04:37:46,651 | Main Runner | INFO | Model Training Pipeline Ended

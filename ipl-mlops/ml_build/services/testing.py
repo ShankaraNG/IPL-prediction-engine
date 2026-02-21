@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import ConfusionMatrixDisplay, classification_report
 from sklearn.tree import plot_tree
 from ml_build.logger import get_logger
+import numpy as np
 
 log = get_logger("TESTING")
 
@@ -72,9 +73,37 @@ def testingFit(x_test, y_test, model_cfg, gridsearch):
             'season': [17], 'target_runs': [180], 'target_overs': [20], 'super_over': ['N']
         })
         
+        new_match['req_rr'] = new_match['target_runs'] / new_match['target_overs']
+
+        new_match['req_rr'] = new_match['req_rr'].replace([np.inf], 0)
+
+        new_match.drop(['target_runs', 'target_overs'], axis=1, inplace=True)
+
+        new_match['batting_first'] = np.where(
+            new_match['toss_decision'] == 'bat',
+            new_match['toss_winner'],
+            np.where(
+                new_match['toss_winner'] == new_match['team1'],
+                new_match['team2'],
+                new_match['team1']
+            )
+        )
+
+        new_match['chasing_team'] = np.where(
+            new_match['batting_first'] == new_match['team1'],
+            new_match['team2'],
+            new_match['team1']
+        )
+
         sample_pred = best_pipeline.predict(new_match)
+
+        if sample_pred[0] == 1:
+            winner = new_match['chasing_team'].values[0]
+        else:
+            winner = new_match['batting_first'].values[0]
+
         with open(pred_filepath, "w") as f:
-            f.write(f"Predicted Winner: {sample_pred[0]}")
+            f.write(f"Predicted Winner: {winner}")
 
         rf_model = best_pipeline.named_steps['model']
         feature_names = best_pipeline.named_steps['preprocessor'].get_feature_names_out()

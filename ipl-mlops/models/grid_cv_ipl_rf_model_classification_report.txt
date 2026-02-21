@@ -1,20 +1,8 @@
-                             precision    recall  f1-score   support
+              precision    recall  f1-score   support
 
-        Chennai Super Kings       0.55      0.62      0.58        26
-             Delhi Capitals       0.25      0.20      0.22        10
-           Delhi Daredevils       0.50      0.40      0.44        10
-             Gujarat Titans       0.60      0.86      0.71         7
-            Kings XI Punjab       0.38      0.36      0.37        14
-      Kolkata Knight Riders       0.52      0.50      0.51        24
-       Lucknow Super Giants       0.67      0.67      0.67         6
-             Mumbai Indians       0.67      0.57      0.62        28
-               Punjab Kings       0.62      0.71      0.67         7
-           Rajasthan Royals       0.44      0.38      0.41        21
-    Rising Pune Supergiants       0.00      0.00      0.00         1
-Royal Challengers Bangalore       0.48      0.65      0.55        20
-Royal Challengers Bengaluru       0.67      1.00      0.80         4
-        Sunrisers Hyderabad       0.71      0.59      0.65        17
+           0       0.66      0.62      0.64        89
+           1       0.70      0.74      0.72       106
 
-                   accuracy                           0.54       195
-                  macro avg       0.51      0.54      0.51       195
-               weighted avg       0.54      0.54      0.53       195
+    accuracy                           0.68       195
+   macro avg       0.68      0.68      0.68       195
+weighted avg       0.68      0.68      0.68       195

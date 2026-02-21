@@ -47,6 +47,36 @@ def preProcessing(data_df):
         data_df['target_runs'] = data_df['target_runs'].astype(int)
         data_df['target_overs'] = data_df['target_overs'].astype(int)
         log.info('Converting the target_runs and target_overs completed')
+    
+        data_df['req_rr'] = data_df['target_runs'] / data_df['target_overs']
+
+        data_df['req_rr'] = data_df['req_rr'].replace([np.inf], 0)
+        data_df['req_rr'] = data_df['req_rr'].fillna(0)
+
+        data_df.drop(['target_runs', 'target_overs'], axis=1, inplace=True)
+
+        data_df['batting_first'] = np.where(
+            data_df['toss_decision'] == 'bat',
+            data_df['toss_winner'],
+            np.where(
+                data_df['toss_winner'] == data_df['team1'],
+                data_df['team2'],
+                data_df['team1']
+            )
+        )
+
+        data_df['chasing_team'] = np.where(
+            data_df['batting_first'] == data_df['team1'],
+            data_df['team2'],
+            data_df['team1']
+        )
+
+        data_df['chase_win'] = (
+            data_df['winner'] == data_df['chasing_team']
+        ).astype(int)
+
+        data_df.drop('winner', axis=1, inplace=True)
+
         return data_df
 
     except Exception as e:

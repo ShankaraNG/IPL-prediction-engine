@@ -48,12 +48,12 @@ def pipelinerunner():
         
         log.info("Preprocessing complete.")
 
-        if 'winner' not in df.columns:
-            log.error("Target column 'winner' missing from processed data.")
+        if 'chase_win' not in df.columns:
+            log.error("Target column 'chase_win' missing from processed data.")
             raise KeyError("Target column not found.")
 
-        features = df.drop('winner', axis=1)
-        target = df['winner']
+        features = df.drop('chase_win', axis=1)
+        target = df['chase_win']
         x_train, x_test, y_train, y_test = train_test_split(
             features, target, test_size=0.2, random_state=365, stratify=target
         )

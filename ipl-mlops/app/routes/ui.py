@@ -3,6 +3,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.responses import FileResponse
 from app.loader import load_model
 import pandas as pd
+import numpy as np
 import uuid,os
 
 router = APIRouter()
@@ -80,9 +81,36 @@ async def form_predict(request:Request):
         'target_overs':int
     })
 
+    df['req_rr'] = df['target_runs'] / df['target_overs']
+
+    df['req_rr'] = df['req_rr'].replace([np.inf], 0)
+
+    df.drop(['target_runs', 'target_overs'], axis=1, inplace=True)
+
+    df['batting_first'] = np.where(
+        df['toss_decision'] == 'bat',
+        df['toss_winner'],
+        np.where(
+            df['toss_winner'] == df['team1'],
+            df['team2'],
+            df['team1']
+        )
+    )
+
+    df['chasing_team'] = np.where(
+        df['batting_first'] == df['team1'],
+        df['team2'],
+        df['team1']
+    )
+
     pred = model.predict(df)
 
-    return {"winner":pred[0]}
+    if pred[0] == 1:
+        winner = df['chasing_team'].values[0]
+    else:
+        winner = df['batting_first'].values[0]
+
+    return {"winner":winner}
 
 @router.post("/upload_predict")
 async def upload_predict(
@@ -92,7 +120,39 @@ async def upload_predict(
 
     df = pd.read_csv(file.file)
 
+    df['req_rr'] = df['target_runs'] / df['target_overs']
+
+    df['req_rr'] = df['req_rr'].replace([np.inf], 0)
+
+    df.drop(['target_runs', 'target_overs'], axis=1, inplace=True)
+
+    df['batting_first'] = np.where(
+        df['toss_decision'] == 'bat',
+        df['toss_winner'],
+        np.where(
+            df['toss_winner'] == df['team1'],
+            df['team2'],
+            df['team1']
+        )
+    )
+
+    df['chasing_team'] = np.where(
+        df['batting_first'] == df['team1'],
+        df['team2'],
+        df['team1']
+    )
+
     df['prediction'] = model.predict(df)
+
+    def predictionOfWinner(x):
+        if x['prediction'] == 1:
+            winner = x['chasing_team']
+        else:
+            winner = x['batting_first']
+
+        return winner
+    df['winner'] = df.apply(predictionOfWinner, axis=1)
+    df = df.drop('prediction', axis=1)
 
     fname = f"pred_{uuid.uuid4().hex}.csv"
 

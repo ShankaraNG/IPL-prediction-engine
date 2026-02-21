@@ -7,11 +7,13 @@ features:
     - venue
     - match_type
     - super_over
+    - batting_first
+    - chasing_team
+
 
   numerical:
     - season
-    - target_runs
-    - target_overs
+    - req_rr
 
 dataPath:
   file: ipl.csv
