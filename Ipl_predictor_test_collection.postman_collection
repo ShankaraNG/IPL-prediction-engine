@@ -1,0 +1,42 @@
+{
+  "info": {
+    "_postman_id": "697ef908-9257-407d-bd78-104ef40258fc",
+    "name": "Ipl predictor",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "17439708"
+  },
+  "item": [
+    {
+      "name": "IPL Predictor Test",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "[\r\n    {\r\n        \"team1\": \"Chennai Super Kings\",\r\n        \"team2\": \"Mumbai Indians\",\r\n        \"toss_winner\": \"Mumbai Indians\",\r\n        \"toss_decision\": \"field\",\r\n        \"venue\": \"Wankhede Stadium\",\r\n        \"match_type\": \"League\",\r\n        \"season\": 17,\r\n        \"target_runs\": 20,\r\n        \"target_overs\": 20,\r\n        \"super_over\": \"N\"\r\n    },\r\n    {\r\n        \"team1\": \"Royal Challengers Bengaluru\",\r\n        \"team2\": \"Kolkata Knight Riders\",\r\n        \"toss_winner\": \"Royal Challengers Bengaluru\",\r\n        \"toss_decision\": \"bat\",\r\n        \"venue\": \"M Chinnaswamy Stadium\",\r\n        \"match_type\": \"League\",\r\n        \"season\": 17,\r\n        \"target_runs\": 200,\r\n        \"target_overs\": 20,\r\n        \"super_over\": \"N\"\r\n    }\r\n]",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://ipl-prediction-engine.onrender.com/predict",
+          "protocol": "https",
+          "host": [
+            "ipl-prediction-engine",
+            "onrender",
+            "com"
+          ],
+          "path": [
+            "predict"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
