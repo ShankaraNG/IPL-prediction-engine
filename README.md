@@ -128,6 +128,4 @@ For further details on setup, configuration, or usage — please contact Shankar
 
 ## 📄 License
 
-This project is licensed under the **MIT License**.
-
 > This application is for **research and testing purposes only.** The creator holds no responsibility for any use of this application for gambling or betting of any kind.
